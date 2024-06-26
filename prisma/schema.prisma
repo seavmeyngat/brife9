@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model account {
+  id           Int            @id @default(autoincrement())
+  first_name   String         @db.VarChar(255)
+  last_name    String         @db.VarChar(255)
+  email        String         @unique @db.VarChar(255)
+  password     String         @db.VarChar(255)
+  province_id  Int?
+  province     province?      @relation(fields: [province_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  account_role account_role[]
+  farmer       farmer[]
+}
+
+model account_role {
+  account_id Int
+  role_id    Int
+  account    account @relation(fields: [account_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  role       role    @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([account_id, role_id])
+}
+
+model commune {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  district_id Int
+  district    district @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model crop {
+  id           Int          @id @default(autoincrement())
+  name         String       @db.VarChar(255)
+  crop_type_id Int
+  crop_type    crop_type    @relation(fields: [crop_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  crop_cycle   crop_cycle[]
+}
+
+model crop_cycle {
+  id           Int       @id @default(autoincrement())
+  farm_land_id Int
+  crop_id      Int
+  open_date    DateTime  @db.Date
+  close_date   DateTime? @db.Date
+  status       String    @db.VarChar(50)
+  crop         crop      @relation(fields: [crop_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  farm_land    farm_land @relation(fields: [farm_land_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model crop_type {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(255)
+  crop crop[]
+}
+
+model district {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  province_id Int
+  commune     commune[]
+  province    province  @relation(fields: [province_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model farm_land {
+  id          Int          @id @default(autoincrement())
+  size        Float
+  province_id Int
+  latitude    Float
+  longitude   Float
+  farmer_id   Int
+  status      String       @db.VarChar(50)
+  crop_cycle  crop_cycle[]
+  farmer      farmer       @relation(fields: [farmer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  province    province     @relation(fields: [province_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model farmer {
+  id            Int         @id @default(autoincrement())
+  id_card       String?     @db.VarChar(255)
+  first_name    String      @db.VarChar(255)
+  last_name     String      @db.VarChar(255)
+  gender        String?     @db.VarChar(10)
+  phone         String?     @db.VarChar(20)
+  source        String?     @db.VarChar(255)
+  registered_by Int?
+  province_id   Int?
+  farm_land     farm_land[]
+  province      province?   @relation(fields: [province_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  account       account?    @relation(fields: [registered_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model province {
+  id        Int         @id @default(autoincrement())
+  name      String      @db.VarChar(255)
+  latitude  Float?
+  longitude Float?
+  account   account[]
+  district  district[]
+  farm_land farm_land[]
+  farmer    farmer[]
+}
+
+model role {
+  id           Int            @id @default(autoincrement())
+  name         String         @db.VarChar(255)
+  account_role account_role[]
+}

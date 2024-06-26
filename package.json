@@ -1,0 +1,25 @@
+{
+  "name": "agro-market-admin-api",
+  "version": "1.0.0",
+  "description": "Agriculture market admin api",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon api/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.15.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.15.0"
+  }
+}
