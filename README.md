@@ -14,6 +14,16 @@ Install dependencies:
 ````
 $ npm install
 ````
+Create .env file in agro-admin-api folder
+````
+DATABASE_URL="postgresql://username:password@host_name:port/your_db"
+PORT=3000
+````
+Example:
+````
+DATABASE_URL="postgresql://postgres:123456@localhost:5432/test_db"
+PORT=3000
+````
 Start the server:
 ````
 $ npm start
