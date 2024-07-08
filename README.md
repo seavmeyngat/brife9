@@ -29,3 +29,33 @@ Start the server:
 $ npm start
 ````
 View the website at: http://localhost:3000
+
+### Get all farmers
+
+```
+GET /api/farmers
+```
+
+### Get a farmer
+
+```
+GET /api/farmers/:id
+```
+
+
+### Get all farmlands
+
+```
+GET /api/farmlands
+```
+
+### Get a farmland
+
+```
+GET /api/farmlands/:id
+```
+### Dashboard or summary
+
+```
+GET /api/summary
+```
