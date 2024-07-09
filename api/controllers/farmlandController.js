@@ -3,7 +3,7 @@ import prisma from "../prismaClient.js";
 // Get all farmlands
 export const getAllFarmlands = async (req, res) => {
   try {
-    const farmlands = await prisma.farm_land.findMany();
+    const farmlands = await prisma.farmland.findMany();
     res.json(farmlands);
   } catch (error) {
     console.error('Error fetching farmlands:', error);

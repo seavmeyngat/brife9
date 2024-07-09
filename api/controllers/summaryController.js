@@ -11,7 +11,7 @@ export const getTotalFarmers = async (req, res) => {
 
 export const getTotalFarmlands = async (req, res) => {
   try {
-    const totalFarmlands = await prisma.farm_land.count();
+    const totalFarmlands = await prisma.farmland.count();
     res.json({ totalFarmlands });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -33,7 +33,7 @@ export const getActiveCropCycles = async (req, res) => {
 
 export const getTotalFarmlandSize = async (req, res) => {
   try {
-    const totalFarmlandSize = await prisma.farm_land.aggregate({
+    const totalFarmlandSize = await prisma.farmland.aggregate({
       _sum: {
         size: true,
       },

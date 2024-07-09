@@ -13,7 +13,9 @@ model account {
   last_name    String         @db.VarChar(255)
   email        String         @unique @db.VarChar(255)
   password     String         @db.VarChar(255)
+  district_id  Int?
   province_id  Int?
+  district     district?      @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   province     province?      @relation(fields: [province_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   account_role account_role[]
   farmer       farmer[]
@@ -26,13 +28,6 @@ model account_role {
   role       role    @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([account_id, role_id])
-}
-
-model commune {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(255)
-  district_id Int
-  district    district @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model crop {
@@ -51,7 +46,7 @@ model crop_cycle {
   close_date   DateTime? @db.Date
   status       String    @db.VarChar(50)
   crop         crop      @relation(fields: [crop_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  farm_land    farm_land @relation(fields: [farm_land_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  farmland     farmland  @relation(fields: [farm_land_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model crop_type {
@@ -64,47 +59,44 @@ model district {
   id          Int       @id @default(autoincrement())
   name        String    @db.VarChar(255)
   province_id Int
-  commune     commune[]
+  account     account[]
   province    province  @relation(fields: [province_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model farm_land {
-  id          Int          @id @default(autoincrement())
-  size        Float
-  province_id Int
-  latitude    Float
-  longitude   Float
-  farmer_id   Int
-  status      String       @db.VarChar(50)
-  crop_cycle  crop_cycle[]
-  farmer      farmer       @relation(fields: [farmer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  province    province     @relation(fields: [province_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  farmer      farmer[]
 }
 
 model farmer {
-  id            Int         @id @default(autoincrement())
-  id_card       String?     @db.VarChar(255)
-  first_name    String      @db.VarChar(255)
-  last_name     String      @db.VarChar(255)
-  gender        String?     @db.VarChar(10)
-  phone         String?     @db.VarChar(20)
-  source        String?     @db.VarChar(255)
+  id            Int        @id @default(autoincrement())
+  id_card       String?    @db.VarChar(255)
+  first_name    String     @db.VarChar(255)
+  last_name     String     @db.VarChar(255)
+  gender        String?    @db.VarChar(10)
+  phone         String?    @db.VarChar(20)
+  source        String?    @db.VarChar(255)
   registered_by Int?
-  province_id   Int?
-  farm_land     farm_land[]
-  province      province?   @relation(fields: [province_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  account       account?    @relation(fields: [registered_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  district_id   Int?
+  district      district?  @relation(fields: [district_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  account       account?   @relation(fields: [registered_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  farmland      farmland[]
+}
+
+model farmland {
+  id         Int          @id(map: "farm_land_pkey") @default(autoincrement())
+  size       Float
+  latitude   Float?
+  longitude  Float?
+  farmer_id  Int
+  status     String       @db.VarChar(50)
+  crop_cycle crop_cycle[]
+  farmer     farmer       @relation(fields: [farmer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "farm_land_farmer_id_fkey")
 }
 
 model province {
-  id        Int         @id @default(autoincrement())
-  name      String      @db.VarChar(255)
+  id        Int        @id @default(autoincrement())
+  name      String     @db.VarChar(255)
   latitude  Float?
   longitude Float?
   account   account[]
   district  district[]
-  farm_land farm_land[]
-  farmer    farmer[]
 }
 
 model role {
