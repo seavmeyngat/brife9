@@ -36,40 +36,40 @@ View the website at: http://localhost:3000
 
 #### Get total farmers
 
--**Endpoint:** `/api/summary/total-farmers`
--**Method:** `GET`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/summary/total-farmers`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
 ```
 {"totalFarmers":13}
 ```
 
 #### Get total farmlands
 
--**Endpoint:** `/api/summary/total-farmlands`
--**Method:** `GET`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/summary/total-farmlands`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
 ```
 {"totalFarmlands":13}
 ```
 
 #### Get total active crop cycle
 
--**Endpoint:** `/api/summary/active-crop-cycles`
--**Method:** `GET`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/summary/active-crop-cycles`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
 ```
 {"activeCropCycles":12}
 ```
 
 #### Get total farmland size
 
--**Endpoint:** `/api/summary/total-farmland-size`
--**Method:** `GET`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/summary/total-farmland-size`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
 ```
 {"totalFarmlandSize":1450}
 ```
@@ -78,10 +78,10 @@ View the website at: http://localhost:3000
 
 #### Get all farmers
 
--**Endpoint:** `/api/farmers`
--**Method:** `GET`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/farmers`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
 ```
 [
   {
@@ -100,10 +100,10 @@ View the website at: http://localhost:3000
 
 #### Get a farmer
 
--**Endpoint:** `/api/farmers/{id}`
--**Method:** `GET`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/farmers/{id}`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
 ```
 {
   "id": 1,
@@ -120,10 +120,10 @@ View the website at: http://localhost:3000
 
 #### Create a farmer
 
--**Endpoint:** `/api/farmers`
--**Method:** `POST`
--**Request Header:**
--**Request Body:**
+- **Endpoint:** `/api/farmers`
+- **Method:** `POST`
+- **Request Headers:** None
+- **Request Body:**
 ```json
 {
   "id_card": "F9900008",
@@ -136,7 +136,7 @@ View the website at: http://localhost:3000
   "district_id": 4
 }
 ```
--**Response:**
+- **Response:**
 ```
 {
   "id": 6,
@@ -153,10 +153,10 @@ View the website at: http://localhost:3000
 
 #### Update a farmer
 
--**Endpoint:** `/api/farmers/{id}`
--**Method:** `PUT`
--**Request Header:**
--**Request Body:**
+- **Endpoint:** `/api/farmers/{id}`
+- **Method:** `PUT`
+- **Request Headers:** None
+- **Request Body:**
 ```json
 {
   "id_card": "F123458",
@@ -169,7 +169,7 @@ View the website at: http://localhost:3000
   "district_id": 1
 }
 ```
--**Response:**
+- **Response:**
 ```
 {
   "id": 4,
@@ -186,10 +186,10 @@ View the website at: http://localhost:3000
 
 #### Delete a farmer
 
--**Endpoint:** `/api/farmers/{id}`
--**Method:** `DELETE`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/farmers/{id}`
+- **Method:** `DELETE`
+- **Request Headers:** None
+- **Response:**
 ```
 {
   "message": "Farmer deleted successfully"
@@ -198,10 +198,10 @@ View the website at: http://localhost:3000
 
 #### Get all farmlands
 
--**Endpoint:** `/api/farmlands`
--**Method:** `GET`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/farmlands`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
 ```
 [
   {
@@ -233,10 +233,10 @@ View the website at: http://localhost:3000
 
 #### Get a farmland
 
--**Endpoint:** `/api/farmlands/{id}`
--**Method:** `GET`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/farmlands/{id}`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
 ```
 {
   "id": 2,
@@ -250,10 +250,10 @@ View the website at: http://localhost:3000
 
 #### Create a farmland
 
--**Endpoint:** `/api/farmlands`
--**Method:** `POST`
--**Request Header:**
--**Request Body:**
+- **Endpoint:** `/api/farmlands`
+- **Method:** `POST`
+- **Request Headers:** None
+- **Request Body:**
 ```json
 {
   "size": 1000,
@@ -263,7 +263,7 @@ View the website at: http://localhost:3000
   "status": "Active"
 }
 ```
--**Response:**
+- **Response:**
 ```
 {
   "id": 4,
@@ -277,10 +277,10 @@ View the website at: http://localhost:3000
 
 #### Update a farmer
 
--**Endpoint:** `/api/farmlands/{id}`
--**Method:** `PUT`
--**Request Header:**
--**Request Body:**
+- **Endpoint:** `/api/farmlands/{id}`
+- **Method:** `PUT`
+- **Request Headers:** None
+- **Request Body:**
 ```json
 {
   "size": 1000,
@@ -290,7 +290,7 @@ View the website at: http://localhost:3000
   "status": "Inactive"
 }
 ```
--**Response:**
+- **Response:**
 ```
 {
     "id": 4,
@@ -304,12 +304,70 @@ View the website at: http://localhost:3000
 
 #### Delete a farmland
 
--**Endpoint:** `/api/farmlands/{id}`
--**Method:** `DELETE`
--**Request Header:**
--**Response:**
+- **Endpoint:** `/api/farmlands/{id}`
+- **Method:** `DELETE`
+- **Request Headers:** None
+- **Response:**
 ```
 {
   "message": "Farmland deleted successfully"
 }
+```
+
+### Account Endpoints
+
+#### Get all accounts
+
+- **Endpoint:** `/api/accounts`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
+```json
+[
+  {
+    "id": 1,
+    "first_name": "Alice",
+    "last_name": "Smith",
+    "email": "alice@example.com",
+    "district_id": 1,
+    "province_id": 1
+  },
+  {
+    "id": 2,
+    "first_name": "Bob",
+    "last_name": "Brown",
+    "email": "bob@example.com",
+    "district_id": 2,
+    "province_id": 2
+  }
+]
+```
+
+### Crop Cycle Endpoints
+
+#### Get all cropCycles
+
+- **Endpoint:** `/api/crop-cycles`
+- **Method:** `GET`
+- **Request Headers:** None
+- **Response:**
+```json
+[
+  {
+    "id": 1,
+    "farm_land_id": 1,
+    "crop_id": 1,
+    "open_date": "2023-01-01",
+    "close_date": "2023-06-01",
+    "status": "Completed"
+  },
+  {
+    "id": 2,
+    "farm_land_id": 2,
+    "crop_id": 2,
+    "open_date": "2023-02-01",
+    "close_date": null,
+    "status": "In Progress"
+  }
+]
 ```
