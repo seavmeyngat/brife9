@@ -30,17 +30,15 @@ export const getFarmlandById = async (req, res) => {
 
 // Add new farmland
 export const addFarmland = async (req, res) => {
-  const { idCard, firstName, lastName, gender, source, registeredBy, provinceId } = req.body;
+  const { size, latitude, longitude, status, farmer_id } = req.body;
   try {
     const newFarmland = await prisma.farmland.create({
       data: {
-        idCard,
-        firstName,
-        lastName,
-        gender,
-        source,
-        registeredBy,
-        province: { connect: { id: parseInt(provinceId) } },
+        size,
+        latitude,
+        longitude,
+        status,
+        farmer: { connect: { id: parseInt(farmer_id) } },
       },
     });
     res.status(201).json(newFarmland);
@@ -53,18 +51,16 @@ export const addFarmland = async (req, res) => {
 // Update farmland
 export const updateFarmland = async (req, res) => {
   const { id } = req.params;
-  const { idCard, firstName, lastName, gender, source, registeredBy, provinceId } = req.body;
+  const { size, latitude, longitude, status, farmer_id } = req.body;
   try {
     const updatedFarmland = await prisma.farmland.update({
       where: { id: parseInt(id) },
       data: {
-        idCard,
-        firstName,
-        lastName,
-        gender,
-        source,
-        registeredBy,
-        province: { connect: { id: parseInt(provinceId) } },
+        size,
+        latitude,
+        longitude,
+        status,
+        farmer: { connect: { id: parseInt(farmer_id) } },
       },
     });
     res.json(updatedFarmland);

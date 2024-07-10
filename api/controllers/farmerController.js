@@ -30,17 +30,18 @@ export const getFarmerById = async (req, res) => {
 
 // Add new farmer
 export const addFarmer = async (req, res) => {
-  const { idCard, firstName, lastName, gender, source, registeredBy, provinceId } = req.body;
+  const { id_card, first_name, last_name, gender, phone, source, registered_by, district_id } = req.body;
   try {
     const newFarmer = await prisma.farmer.create({
       data: {
-        idCard,
-        firstName,
-        lastName,
+        id_card,
+        first_name,
+        last_name,
         gender,
+        phone,
         source,
-        registeredBy,
-        province: { connect: { id: parseInt(provinceId) } },
+        account: {connect: { id: parseInt(registered_by)}},
+        district: { connect: { id: parseInt(district_id) } },
       },
     });
     res.status(201).json(newFarmer);
@@ -53,18 +54,19 @@ export const addFarmer = async (req, res) => {
 // Update farmer
 export const updateFarmer = async (req, res) => {
   const { id } = req.params;
-  const { idCard, firstName, lastName, gender, source, registeredBy, provinceId } = req.body;
+  const { id_card, first_name, last_name, gender, phone, source, registered_by, district_id } = req.body;
   try {
     const updatedFarmer = await prisma.farmer.update({
       where: { id: parseInt(id) },
       data: {
-        idCard,
-        firstName,
-        lastName,
+        id_card,
+        first_name,
+        last_name,
         gender,
+        phone,
         source,
-        registeredBy,
-        province: { connect: { id: parseInt(provinceId) } },
+        account: {connect: { id: parseInt(registered_by)}},
+        district: { connect: { id: parseInt(district_id) } },
       },
     });
     res.json(updatedFarmer);
