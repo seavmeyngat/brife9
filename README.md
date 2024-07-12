@@ -244,7 +244,7 @@ View the website at: http://localhost:3000
   "latitude": 13.0957,
   "longitude": 103.2022,
   "farmer_id": 2,
-  "status": "Active"
+  "status": "active"
 }
 ```
 
@@ -359,7 +359,7 @@ View the website at: http://localhost:3000
     "crop_id": 1,
     "open_date": "2023-01-01",
     "close_date": "2023-06-01",
-    "status": "Completed"
+    "status": "active"
   },
   {
     "id": 2,
@@ -367,7 +367,7 @@ View the website at: http://localhost:3000
     "crop_id": 2,
     "open_date": "2023-02-01",
     "close_date": null,
-    "status": "In Progress"
+    "status": "inactive"
   }
 ]
 ```
