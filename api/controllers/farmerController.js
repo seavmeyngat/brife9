@@ -3,7 +3,9 @@ import prisma from "../prismaClient.js";
 // Get all farmers
 export const getAllFarmers = async (req, res) => {
   try {
-    const farmers = await prisma.farmer.findMany();
+    const farmers = await prisma.farmer.findMany({
+      include: {district: true, account: true}
+    });
     res.json(farmers);
   } catch (error) {
     console.error('Error fetching farmers:', error);
@@ -17,6 +19,7 @@ export const getFarmerById = async (req, res) => {
   try {
     const farmer = await prisma.farmer.findUnique({
       where: { id: parseInt(id) },
+      include: {district: true, account: true}
     });
     if (!farmer) {
       return res.status(404).json({ error: 'Farmer not found' });

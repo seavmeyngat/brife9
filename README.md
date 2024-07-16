@@ -93,7 +93,21 @@ View the website at: http://localhost:3000
     "phone": "+85512345678",
     "source": "Amru Rice",
     "registered_by": 1,
-    "district_id": 1
+    "district_id": 1,
+    "district": {
+      "id": 1,
+      "name": "Mongkol Borei",
+      "province_id": 1
+    },
+    "account": {
+      "id": 1,
+      "first_name": "District2",
+      "last_name": "User",
+      "email": "district2@example.com",
+      "password": "district",
+      "district_id": 6,
+      "province_id": 2
+    }
   }
 ]
 ```
@@ -114,7 +128,21 @@ View the website at: http://localhost:3000
   "phone": "+85512345678",
   "source": "Amru Rice",
   "registered_by": 1,
-  "district_id": 1
+  "district_id": 1,
+  "district": {
+    "id": 1,
+    "name": "Mongkol Borei",
+    "province_id": 1
+  },
+  "account": {
+    "id": 1,
+    "first_name": "District2",
+    "last_name": "User",
+    "email": "district2@example.com",
+    "password": "district",
+    "district_id": 6,
+    "province_id": 2
+  }
 }
 ```
 
@@ -210,23 +238,18 @@ View the website at: http://localhost:3000
     "latitude": 13.0957,
     "longitude": 103.2022,
     "farmer_id": 1,
-    "status": "Active"
-  },
-  {
-    "id": 2,
-    "size": 150,
-    "latitude": 13.0957,
-    "longitude": 103.2022,
-    "farmer_id": 2,
-    "status": "Active"
-  },
-  {
-    "id": 3,
-    "size": 200,
-    "latitude": 10.6194,
-    "longitude": 104.1669,
-    "farmer_id": 3,
-    "status": "Inactive"
+    "status": "active",
+    "farmer": {
+      "id": 1,
+      "id_card": "F123456",
+      "first_name": "John",
+      "last_name": "Doe",
+      "gender": "Male",
+      "phone": "+85512345678",
+      "source": "Amru Rice",
+      "registered_by": 1,
+      "district_id": 1
+    }
   }
 ]
 ```
@@ -239,12 +262,23 @@ View the website at: http://localhost:3000
 - **Response:**
 ```
 {
-  "id": 2,
-  "size": 150,
+  "id": 1,
+  "size": 100,
   "latitude": 13.0957,
   "longitude": 103.2022,
-  "farmer_id": 2,
-  "status": "active"
+  "farmer_id": 1,
+  "status": "active",
+  "farmer": {
+    "id": 1,
+    "id_card": "F123456",
+    "first_name": "John",
+    "last_name": "Doe",
+    "gender": "Male",
+    "phone": "+85512345678",
+    "source": "Amru Rice",
+    "registered_by": 1,
+    "district_id": 1
+  }
 }
 ```
 
@@ -325,20 +359,24 @@ View the website at: http://localhost:3000
 ```json
 [
   {
-    "id": 1,
-    "first_name": "Alice",
-    "last_name": "Smith",
-    "email": "alice@example.com",
+    "id": 3,
+    "first_name": "District1",
+    "last_name": "User",
+    "email": "district1@example.com",
+    "password": "district",
     "district_id": 1,
-    "province_id": 1
-  },
-  {
-    "id": 2,
-    "first_name": "Bob",
-    "last_name": "Brown",
-    "email": "bob@example.com",
-    "district_id": 2,
-    "province_id": 2
+    "province_id": 1,
+    "district": {
+      "id": 1,
+      "name": "Mongkol Borei",
+      "province_id": 1
+    },
+    "province": {
+      "id": 1,
+      "name": "Banteay Meanchey",
+      "latitude": null,
+      "longitude": null
+    }
   }
 ]
 ```
