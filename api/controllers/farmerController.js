@@ -3,9 +3,30 @@ import prisma from "../prismaClient.js";
 // Get all farmers
 export const getAllFarmers = async (req, res) => {
   try {
-    const farmers = await prisma.farmer.findMany({
-      include: {district: true, account: true}
-    });
+    const { district_id, province_id } = req.query;
+
+    let districts = [];
+
+    let condition = { include: { district: true, account: true } };
+
+    if (province_id) {
+      districts = await prisma.district.findMany({
+        where: {province_id: Number(province_id)},
+        select: {
+          id: true
+        }
+      });
+
+      districts = districts.map(d => d.id);
+    }
+
+    if (district_id) {
+      districts = [Number(district_id)];
+    }
+
+    districts.length ? condition.where = { district_id: {in: districts} } : condition;
+
+    const farmers = await prisma.farmer.findMany(condition);
     res.json(farmers);
   } catch (error) {
     console.error('Error fetching farmers:', error);

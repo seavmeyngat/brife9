@@ -3,9 +3,10 @@ import prisma from "../prismaClient.js";
 // Get all farmlands
 export const getAllFarmlands = async (req, res) => {
   try {
-    const farmlands = await prisma.farmland.findMany({
-      include: {farmer: true}
-    });
+    const { status } = req.query;
+    let condition = {include: {farmer: true}};
+    status ? condition.where = {status: status} : condition;
+    const farmlands = await prisma.farmland.findMany(condition);
 
     res.json(farmlands);
   } catch (error) {
