@@ -1,5 +1,4 @@
 import express, { json } from "express";
-import serverless from "serverless-http";
 import cors from "cors";
 import { config } from "dotenv";
 import summaryRoutes from "./routes/summary.js";
@@ -32,5 +31,4 @@ if (process.env.NODE_ENV !== "production") {
   );
 }
 
-// export const handler = serverless(app);
 export default app;
